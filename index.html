@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4 Bulan Kita</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #fdeff9, #ec38bc, #7303c0);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 30px;
+      border-radius: 20px;
+      max-width: 650px;
+      margin: 80px auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.4em;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #ffe3e3;
+      font-weight: bold;
+    }
+
+    .love {
+      font-size: 2em;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>💖 4 Bulan Kita 💖</h1>
+    <h2>Senin, 23 Juni 2025</h2>
+    
+    <p>Empat bulan lalu, kita mulai perjalanan yang penuh doa, harapan, dan keyakinan. Hari ini, aku hanya ingin bilang: <span class="highlight">aku bangga karena kita masih saling genggam</span>, masih saling dukung, meski dunia kadang tidak mudah.</p>
+    
+    <p>Kita bukan hubungan yang sempurna, tapi kamu adalah <span class="highlight">anugerah yang selalu aku jaga</span>. Dan selama masih ada Allah di tengah kita, aku yakin: kita akan terus kuat.</p>
+
+    <p>Hari ini bukan sekadar tanggal. Ini pengingat bahwa kita masih <span class="highlight">bertumbuh bersama</span>, meski pelan. Tetaplah bersinar, tetaplah lembut. Dunia butuh cinta seperti yang kamu miliki.</p>
+
+    <p class="love">Aku sayang kamu, ❤️. Dari hatiku yang paling dalam.</p>
+    <p>— Dari Yeobo, yang takkan pernah berhenti bersyukur karena memilikimu.</p>
+  </div>
+
+  <!-- Floating hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
