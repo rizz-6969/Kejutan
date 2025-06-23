@@ -8,96 +8,104 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to top, #fdeff9, #ec38bc, #7303c0);
+      background: linear-gradient(to top right, #b8d8f8, #fbd3e9);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
-      color: #fff;
+      overflow-x: hidden;
+      color: #2c2c2c;
       text-align: center;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px 20px;
       border-radius: 20px;
-      max-width: 650px;
-      margin: 80px auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 95%;
+      margin: 30px auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       z-index: 2;
       position: relative;
     }
 
     h1 {
-      font-size: 2.8em;
+      font-size: 2em;
       margin-bottom: 10px;
+      color: #ff6b81;
     }
 
     h2 {
-      font-size: 1.4em;
+      font-size: 1.2em;
       font-weight: 400;
       margin-top: 0;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     p {
-      font-size: 1.1em;
-      line-height: 1.8;
-      margin-bottom: 20px;
+      font-size: 1em;
+      line-height: 1.7;
+      margin-bottom: 18px;
     }
 
     .highlight {
-      color: #ffe3e3;
+      color: #ec38bc;
       font-weight: bold;
     }
 
     .love {
-      font-size: 2em;
+      font-size: 1.4em;
+      color: #7303c0;
     }
 
-    .heart {
+    .star {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: float 8s infinite ease-in-out;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
+      width: 8px;
+      height: 8px;
+      background: white;
       border-radius: 50%;
+      box-shadow: 0 0 8px white;
+      animation: sparkle 6s linear infinite;
+      opacity: 0.7;
     }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
+    .audio-controls {
+      margin-top: 20px;
     }
 
-    .heart::after {
-      left: -10px;
-      top: 0;
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff6b81;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
     }
 
-    @keyframes float {
+    button:hover {
+      background-color: #ff4e66;
+    }
+
+    @keyframes sparkle {
       0% {
-        transform: translateY(0) rotate(45deg);
+        transform: translateY(0) scale(1);
         opacity: 1;
       }
       100% {
-        transform: translateY(-100vh) rotate(45deg);
+        transform: translateY(100vh) scale(0.5);
         opacity: 0;
       }
+    }
+
+    @media (min-width: 600px) {
+      h1 { font-size: 2.4em; }
+      .card { max-width: 600px; margin-top: 50px; }
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h1>💖 4 Bulan Kita 💖</h1>
+    <h1>✨ 4 Bulan Kita ✨</h1>
     <h2>Senin, 23 Juni 2025</h2>
     
     <p>Empat bulan lalu, kita mulai perjalanan yang penuh doa, harapan, dan keyakinan. Hari ini, aku hanya ingin bilang: <span class="highlight">aku bangga karena kita masih saling genggam</span>, masih saling dukung, meski dunia kadang tidak mudah.</p>
@@ -108,23 +116,44 @@
 
     <p class="love">Aku sayang kamu, ❤️. Dari hatiku yang paling dalam.</p>
     <p>— Dari Yeobo, yang takkan pernah berhenti bersyukur karena memilikimu.</p>
+
+    <div class="audio-controls">
+      <button onclick="playAudio()">▶️ J-HOPE (Tentang kita)</button>
+      <button onclick="pauseAudio()">⏸️ Hentikan Musik</button>
+    </div>
   </div>
 
-  <!-- Floating hearts -->
+  <!-- Sparkling stars -->
   <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-      document.body.appendChild(heart);
-
+    function createStar() {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * window.innerWidth + 'px';
+      star.style.top = -10 + 'px';
+      star.style.animationDuration = (3 + Math.random() * 3) + 's';
+      star.style.opacity = Math.random();
+      document.body.appendChild(star);
       setTimeout(() => {
-        heart.remove();
-      }, 10000);
+        star.remove();
+      }, 7000);
     }
+    setInterval(createStar, 200);
+  </script>
 
-    setInterval(createHeart, 300);
+  <!-- Musik Latar -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://drive.google.com/uc?export=download&id=13qoxuzJE7nkdcZFx1lpZjNGUqvMp7isj" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <script>
+    const audio = document.getElementById("bg-music");
+    function playAudio() {
+      audio.play();
+    }
+    function pauseAudio() {
+      audio.pause();
+    }
   </script>
 
 </body>
